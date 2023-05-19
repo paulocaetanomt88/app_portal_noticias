@@ -30,12 +30,22 @@ class NoticiaController extends Controller
 
         $noticias = [];
 
+        /*
         if (Cache::has('dez_primeiras_noticias')) {
             $noticias = Cache::get('dez_primeiras_noticias');
         } else {
             $noticias = Noticia::orderByDesc('created_at')->limit(10)->get();
             Cache::put('dez_primeiras_noticias', $noticias, 15);
         }
+        */
+
+        // Cache::remember() é uma forma mais enxuta de implementar a lógica do trecho comentado acima
+        // verifica se a chave existe, caso exista, aproveita o conteudo armazenado na chave 'dez_primeiras_noticias' 
+        // e retorna a informação de cache.
+        // Mas caso não existir, cria a chave 'dez_primeiras_noticias' e armazena nesta o retorno da consulta Noticia::orderByDesc('created_at')->limit(10)->get();
+        $noticias = Cache::remember('dez_primeiras_noticias', 15, function() {
+            return Noticia::orderByDesc('created_at')->limit(10)->get();
+        });
 
         return view('noticia', ['noticias' => $noticias]);
     }
