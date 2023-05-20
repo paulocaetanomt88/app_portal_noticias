@@ -1,3 +1,9 @@
+# Usando Redis no Laravel
+<p>O Redis funciona como um banco de dados em cache, ou seja, na memória RAM do servidor.</p>
+<p>Neste projeto, configurei o redis para fazer uma consulta no.bancp de dados apenas uma vez e armazenar esta coleção de dados retornada em um par 'chave' => 'valor' no cache do Redis.</p>
+Isso pode tornar uma aplicação de grande porte muito mais rápida no retorno de suas consultas, como também poupar o servidor de banco de dados.</p>
+<p>Por armazenar os dados em memória RAM que é volátil, em caso de um desastre, caso o servidor seja desligado sem programação prévia, o Redis pode ser configurado para fazer uma cópia dos dados em cache de tempos em tempos para que esses dados não sejam perdidos.</p>
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
